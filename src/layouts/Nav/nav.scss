@@ -1,0 +1,13 @@
+.nav__item.active {
+  transition: all linear 0.3s;
+  color: white;
+  // background-image: linear-gradient(to right, #135f9e, rgb(78, 143, 207));
+  background-color: #5e7488;
+  padding-left: 24px;
+}
+.nav__item {
+  color: white;
+  padding: 0;
+  height: 42px;
+  min-width: 180px;
+}

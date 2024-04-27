@@ -1,0 +1,9 @@
+.toolbal__options.active > span {
+  color: var(--color-blue);
+  //   color: red;
+}
+.toolbal__options {
+  span {
+    font-weight: 600;
+  }
+}

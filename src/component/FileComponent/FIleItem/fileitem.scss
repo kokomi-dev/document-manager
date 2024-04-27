@@ -1,0 +1,31 @@
+.item__file {
+  &:hover {
+    opacity: 0.5;
+  }
+  // .text__details {
+  //   display: none;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   padding: 8px;
+  //   color: white;
+  //   z-index: 0;
+  // }
+  // &:hover .text__details {
+  //   display: flex;
+  // }
+  // .overlay {
+  //   display: none;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   bottom: 0;
+  //   right: 0;
+  //   background-color: rgba(0, 0, 0, 0.05);
+  //   z-index: 0;
+  // }
+  &:hover .overlay {
+    display: block;
+  }
+}

@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  scroll-behavior: smooth;
+  // overflow: auto;
+}
+:root {
+  --color-primary: #0b1327;
+  --color-black: #2c2f31;
+  --color-black-2: #888;
+  --color-blue: #035495;
+  --backgr-white: #fff;
+  --backgr-white-2: #fafafc;
+}
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+.img-avatar {
+  width: 63px;
+  height: 63px;
+  border-radius: 180px;
+}
+.modaluploadfile {
+  width: 700px;
+  height: 400px;
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
