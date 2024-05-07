@@ -8,7 +8,7 @@ const ModalLogin = ({ isHidden }) => {
   }, [isHidden]);
   return (
     <div
-      className="w-[40%] h-[70%] transition-all fixed top-[30%] left-[50%] translate-x-[-50%] translate-y-[-20%] z-[10]"
+      className="w-[40%] h-[70%] transition-all fixed top-[30%] left-[50%] translate-x-[-50%] translate-y-[-20%] z-[40]"
       hidden={isHidden}
     >
       {modal ? (

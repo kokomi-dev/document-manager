@@ -5,7 +5,7 @@ function OverLay({ isHidden, onClick }) {
   return (
     <div
       {...props}
-      className="w-full h-full fixed top-0 left-0 bottom-0 right-0 cursor-pointer bg-[rgba(0,0,0,0.35)] z-[100] transition-all"
+      className="w-full h-full fixed top-0 left-0 bottom-0 right-0 cursor-pointer bg-[rgba(0,0,0,0.35)] z-[10] transition-all"
       hidden={isHidden}
     ></div>
   );
