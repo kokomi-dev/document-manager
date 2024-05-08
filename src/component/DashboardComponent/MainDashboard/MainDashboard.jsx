@@ -36,7 +36,7 @@ const MainDashboard = () => {
   }, []);
   return (
     <>
-      <div className="w-[100%] h-[260px] my-6 pt-6 grid grid-cols-2 lg:grid-cols-3 gap-x-[8%]">
+      <div className="w-[100%] h-[460px] md:h-[260px] my-6 pt-6 grid grid-cols-1 gap-y-[8%] md:gap-y-0 md:grid-cols-2 lg:grid-cols-3 gap-x-[8%]">
         {/* box show number document and trash */}
         <div className="bg-white shadow-xl w-[100%] h-[100%] rounded-6 flex items-center justify-center flex-col">
           <IoDocumentTextSharp className="text-[1.6rem]" />

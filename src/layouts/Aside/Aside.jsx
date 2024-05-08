@@ -73,7 +73,6 @@ const Aside = ({ isHidden, setIsHidden }) => {
           </div>
         </Flex>
       </div>
-      {/* <ModalConfirmLogout isHidden={isHidden} setIsHidden={setIsHidden} /> */}
       {/* overlay */}
       <OverLay
         isHidden={isHidden}

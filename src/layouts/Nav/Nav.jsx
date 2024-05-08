@@ -22,16 +22,16 @@ function Nav() {
     });
   }, []);
   return (
-    <div className="w-[100%]  py-6 flex items-center justify-start flex-col  text-[1.06rem]  border-[#888] border-b-[0.5px] ">
+    <div className="w-full ml-[12px]  py-6 flex items-center justify-start flex-col  text-[1.06rem]  border-[#888] border-b-[0.5px] ">
       <Link
         to="/dashboard"
-        className="nav__item rounded-6  active flex items-center px-6 justify-start my-[4px] text-white2 mt-0"
+        className="nav__item min-w-[140px] md:min-w-[180px]  rounded-6  active flex items-center px-6 justify-start my-[4px] text-white2 mt-0"
       >
         <MdSpaceDashboard className="mr-8 text-[1.3rem]" />
         <span className="item__name">Dashboard</span>
       </Link>
       <Link
-        className="nav__item rounded-6  flex items-center px-6 justify-start my-[4px] text-white2 "
+        className="nav__item min-w-[140px] md:min-w-[180px] rounded-6  flex items-center px-6 justify-start my-[4px] text-white2 "
         to="/documents"
       >
         <FaFileAlt className="mr-8 text-[1.2rem]" />
@@ -39,7 +39,7 @@ function Nav() {
       </Link>
       <Link
         to="/documents/trash"
-        className="nav__item rounded-6  flex items-center px-6 justify-start my-[4px] text-white2 "
+        className="nav__item min-w-[140px] md:min-w-[180px] rounded-6  flex items-center px-6 justify-start my-[4px] text-white2 "
       >
         <FaTrashAlt className="mr-8 text-[1.1rem]" />
         Trash

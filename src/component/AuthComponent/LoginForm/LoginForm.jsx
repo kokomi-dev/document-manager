@@ -23,7 +23,7 @@ const LoginForm = ({ setModal }) => {
     }
   };
   return (
-    <div className="relative transition-all min-w-[450px] min-h-[450px] bg-white text-black p-[24px] rounded-[6px]">
+    <div className="relative transition-all lg:min-w-[450px] lg:min-h-[450px] bg-white text-black p-[24px] rounded-[6px]">
       {/* head */}
       <span className="text-[1.2rem] font-bold text-[#111]">Sign In</span>
       <span className="text-[0.9rem] text-white3 ml-8">to continue!</span>

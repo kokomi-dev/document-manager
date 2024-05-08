@@ -18,7 +18,7 @@ const Trash = () => {
           <div className="flex-1  w-full h-full">
             {/* header content */}
             <h1 className="text-[2rem] font-semibold border-b-[0.5px] border-[#888]">
-              Trash{" "}
+              Trash
               <span className="text-[1.5rem] text-blue">({numberTrash})</span>
             </h1>
             <div className="flex items-center justify-between pt-4">
@@ -31,12 +31,15 @@ const Trash = () => {
               <div>
                 <Button
                   justify="center"
-                  className="button__blue text-white mb-8"
+                  className="button__blue text-white mb-8 h-[24px] w-[120px] md:h-auto md:w-auto"
                 >
                   <TbRestore />
                   Restore All
                 </Button>
-                <Button justify="center" className="button__green text-white">
+                <Button
+                  justify="center"
+                  className="button__green text-white h-[24px] w-[120px] md:h-auto md:w-auto"
+                >
                   <MdDeleteForever className="text-[1.2rem]" />
                   Delete All
                 </Button>

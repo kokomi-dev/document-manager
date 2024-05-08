@@ -50,8 +50,10 @@ const Search = ({ loginUser }) => {
       {/* user name logined */}
       <div className="w-full flex items-center justify-center">
         <h6 className="text-black-2 flex items-center justify-start mt-6">
-          <FaHandPeace className="text-blue text-[1.1rem] mr-[4px]" />
-          <span className="italic">Hi!</span>
+          <div>
+            <FaHandPeace className="text-blue text-[1.1rem] mr-[4px]" />
+            <span className="italic block md:inline-block">Hi!</span>
+          </div>
           <span className="ml-8 text-black ">{loginUser.userName}</span>
         </h6>
         {/* search */}

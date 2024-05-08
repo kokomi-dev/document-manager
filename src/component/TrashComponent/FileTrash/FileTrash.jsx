@@ -44,15 +44,15 @@ function FileTrash({ data, detail, index, onAction, setIsId, setIsHidden }) {
       <td className="w-[15%]">
         <h6 className="text-[0.9rem] text-green">{createdAt}</h6>
       </td>
-      <td className="w-[20%] p-4 h-[100%] ">
+      <td className="w-auto p-[4px] md:p-4 h-[100%] flex flex-col  justify-center items-center ">
         <button
-          className="button__blue w-[40%] text-white h-[38px] rounded-6 hover:opacity-70 "
+          className="button__blue w-[80%]  mb-[6px]  text-white h-[30px] md:h-[38px] rounded-6 hover:opacity-70 "
           onClick={handleRetore}
         >
           Restore
         </button>
         <button
-          className="bg-white-2 w-[40%] text-black-2 h-[38px] rounded-6 ml-8 hover:opacity-70 shadow-inner"
+          className="bg-white-2 w-[80%]  text-black-2 h-[30px] md:h-[38px] rounded-6  hover:opacity-70 shadow-inner"
           onClick={() => {
             setIsHidden(false);
             setIsId(id);
