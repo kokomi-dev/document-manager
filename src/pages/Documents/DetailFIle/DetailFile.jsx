@@ -5,6 +5,7 @@ import { getData } from "../../../api/Data/GetData";
 // loading
 import Loading from "../../../component/Components/Loading/Loading";
 import MainDetail from "../../../component/DetailFileComponent/MainDetail/MainDetail";
+import Flex from "../../../component/Components/Flex/Flex";
 // main detail
 const DetailFile = () => {
   const [file, setFile] = React.useState({});
@@ -34,7 +35,10 @@ const DetailFile = () => {
     return <Loading />;
   }
   return (
-    <div className="min-w-full h-ful min-h-[100%] py-6">
+    <div className="min-w-full h-ful py-6">
+      <Flex justify="between" className="border-b-[0.5px] border-[#888]">
+        <h1 className="text-[1.6rem] font-semibold">Dashboard</h1>
+      </Flex>
       <MainDetail
         data={file}
         edit={{ isEdit, setIsEdit }}

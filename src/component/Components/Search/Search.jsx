@@ -37,7 +37,7 @@ const Search = ({ loginUser }) => {
       setResultList([]);
       setFocus(false);
       setSearchValue("");
-    }, 3000);
+    }, 200);
     return () => {};
   };
 
@@ -72,7 +72,7 @@ const Search = ({ loginUser }) => {
         </form>
       </div>
       {focus && (
-        <div className="w-[100%] mt-12 overflow-y-scroll ">
+        <div className="w-[100%] mt-12 overflow-y-scroll transition-all duration-200 ">
           <hr className="w-[100%] opacity-50 my-4" />
           <h1 className="text-blue font-semibold">Result:</h1>
           {/* show result search */}
@@ -82,7 +82,6 @@ const Search = ({ loginUser }) => {
                 className="my-[2px] block capitalize py-[2px] ml-[4px] hover:underline hover:text-blue"
                 key={item.id}
                 to={`/documents/files/${item.id}`}
-                // onClick={handleResultClick}
               >
                 {item.fileName}
               </Link>

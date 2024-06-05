@@ -1,0 +1,30 @@
+/* Transition for sliding */
+.transition-slide {
+  transition: transform 0.5s ease-in-out, opacity 0.5s linear;
+}
+
+.hidden-slide {
+  transform: translateX(-100%);
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.visible-slide {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+.gr {
+  margin-bottom: 12px;
+  div {
+    padding-left: 12px;
+  }
+  ul {
+    list-style: circle;
+    padding-left: 12px;
+    li {
+      padding: 4px 0px;
+    }
+  }
+}

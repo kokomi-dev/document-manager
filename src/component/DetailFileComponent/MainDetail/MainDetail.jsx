@@ -3,7 +3,6 @@ import Button from "../../Components/Button/Button";
 import Flex from "../../Components/Flex/Flex";
 import TextEdit from "../../Components/TextEdit/TextEdit";
 // icon
-
 import { MdEditSquare } from "react-icons/md";
 import { TbArrowBackUp } from "react-icons/tb";
 import { FaFileDownload } from "react-icons/fa";
@@ -19,7 +18,7 @@ import {
   FavoritesFile,
 } from "../../../api/File/CRUD";
 const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
-  const { fileName, content, createdAt, updateAt, options } = data;
+  const { fileName, content, createdAt, updatedAt, options } = data;
   const { fontSize, isItalic, isBold, isUnderline } = options;
   const { isEdit, setIsEdit } = edit;
   const [isFavorite, setIsFavorite] = useState(false);
@@ -60,9 +59,9 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
     setIsFavorite(true);
   };
   return (
-    <div className="w-full h-full  transition-all duration-300">
+    <div className="w-full h-full transition-all duration-300 mt-12">
       {/* head */}
-      <Flex justify="between" className="w-full h-full mb-24">
+      <Flex justify="between" className="w-full  mb-24">
         {/* button back */}
         <Link
           to="/documents"
@@ -143,8 +142,8 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
             <span className="text-green mr-4">Created At:</span> {createdAt}
           </h6>
           <h6 className="text-black-2 text-[0.9rem]">
-            <span className="text-green mr-4"> Updated At:</span>{" "}
-            {updateAt ? updateAt : <span>Haven't updated yet</span>}
+            <span className="text-green mr-4"> Updated At:</span>
+            {updatedAt ? updatedAt : <span>Haven't updated yet</span>}
           </h6>
         </div>
       </Flex>

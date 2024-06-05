@@ -8,7 +8,6 @@
   box-sizing: border-box;
   user-select: none;
   scroll-behavior: smooth;
-  // overflow: auto;
 }
 :root {
   --color-primary: #0b1327;
@@ -34,4 +33,16 @@ body {
   top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+/* bakcgrimages */
+.button__blue {
+  background-image: linear-gradient(to right, #176fb7, rgb(78, 143, 207));
+}
+.button__green {
+  background-image: linear-gradient(to left, #0cc10c, rgb(64, 204, 106));
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 12px 0px;
 }

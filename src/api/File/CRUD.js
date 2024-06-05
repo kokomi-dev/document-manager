@@ -24,7 +24,7 @@ export const CreateFile = async (data, loginUser) => {
       type: type,
       size: size,
       createdAt: createdAt,
-      updatedAt: updatedAt,
+      updatedAt: null,
       isDelete: isDelete,
       isFavorite: isFavorite,
       options: {
@@ -52,7 +52,7 @@ export const UpdateFile = async (
   const { bold, italic, underline, size } = changeOptions;
   var postData = {
     ...data,
-    updateAt: new Date().toLocaleDateString("en-GB"),
+    updatedAt: new Date().toLocaleDateString("en-GB"),
     fileName: editableName,
     content: editableContent,
     options: {

@@ -12,9 +12,25 @@ function MainFeed({ setIsHidden, layouts, creationTime }) {
       try {
         const data = await getData(loginUser);
         if (data) {
+          // filter document not is delete
           const filteredData = data.data.filter((item) => !item.isDelete);
+          // fitler documetn with creation time
+          const sortDocuments = (filteredData, creationTime) => {
+            return filteredData.sort((a, b) => {
+              const dateA = new Date(a.createdAt);
+              const dateB = new Date(b.createdAt);
+              if (creationTime === "oldest") {
+                // return dateA - dateB;
+                console.log(dateA);
+              } else if (creationTime === "latest") {
+                return dateB - dateA;
+              }
+            });
+          };
+          const filter = sortDocuments(filteredData, creationTime);
+          // get id detail document
           const filteredIds = filteredData.map((item) => item.id);
-          setListDocuments(filteredData);
+          setListDocuments(filter);
           setDetail(filteredIds);
         } else {
           setListDocuments([]);
@@ -23,7 +39,8 @@ function MainFeed({ setIsHidden, layouts, creationTime }) {
       } catch (error) {}
     };
     fetchData();
-  }, [loginUser.uuId]);
+  }, [loginUser.uuId, creationTime]);
+
   return (
     <Fragment>
       {/* select all */}

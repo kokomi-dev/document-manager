@@ -8,16 +8,22 @@ const ModalConfirmLogout = ({ isHidden, setIsHidden }) => {
   };
   return (
     <div
-      style={{
-        display: isHidden ? "none" : "flex",
-      }}
-      className={`fixed top-[50%] left-[50%] translate-x-[-50%] rounded-6 shadow-xl translate-y-[-50%] w-[300px] h-[100px] bg-white z-[200] flex items-center justify-center flex-col`}
+      // style={{
+      //   display: isHidden ? "none" : "flex",
+      // }}
+      className={`fixed top-[50%] left-[50%] translate-x-[-50%] ${
+        isHidden
+          ? "translate-y-[-150%] opacity-0 invisible"
+          : "translate-y-[-50%] opacity-100 visible"
+      } rounded-6 shadow-xl  w-[300px] h-[100px] bg-white z-[200] flex items-center justify-center flex-col transition-all duration-300`}
     >
-      <h4>You definitely want to sign out!</h4>
-      <div className="flex items-center justify-center mt-4">
+      <h4 className="text-[1.1rem] lg:text-[1.3rem]">
+        You definitely want to sign out!
+      </h4>
+      <div className="flex items-center justify-center mt-8">
         <Button
           justify="center"
-          className="bg-main mr-8"
+          className="bg-main mr-12"
           onClick={() => {
             setIsHidden(true);
           }}

@@ -48,7 +48,7 @@ const SubMainFeed = ({ setLayouts, setCreationTime }) => {
         <Flex justify="center" className=" rounded-6 p-1">
           <Button
             justify="center"
-            className="choose__layout grid_layout "
+            className="choose__layout grid_layout mr-8 "
             onClick={() => {
               setLayouts("grid_layout");
               localStorage.setItem("layout", "grid_layout");
@@ -80,13 +80,13 @@ const SubMainFeed = ({ setLayouts, setCreationTime }) => {
           >
             <option value="latest">Latest</option>
             <option value="oldest">Oldest</option>
-            <option value="all">all</option>
+            <option value="all">All</option>
           </select>
         </Flex>
       </Flex>
       <ModalUploadDocument
-        isOpen={isHiddenUpDoc}
-        setIsOpen={setIsHiddenUpDoc}
+        isHidden={isHiddenUpDoc}
+        setIsHidden={setIsHiddenUpDoc}
       />
       <OverLay
         isHidden={isHiddenUpDoc}

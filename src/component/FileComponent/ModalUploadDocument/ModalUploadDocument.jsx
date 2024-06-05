@@ -5,8 +5,8 @@ import { v4 } from "uuid";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const ModalUploadDocument = memo(function ModalUploadDocument({
-  isOpen,
-  setIsOpen,
+  isHidden,
+  setIsHidden,
 }) {
   const navigate = useNavigate();
   const loginUser = useSelector((state) => state.login);
@@ -14,7 +14,7 @@ const ModalUploadDocument = memo(function ModalUploadDocument({
   const [error, setError] = useState(false);
   useEffect(() => {
     setError(false);
-  }, [isOpen]);
+  }, [isHidden]);
 
   const handleCreateDoc = async () => {
     if (!name && name === "") {
@@ -27,7 +27,7 @@ const ModalUploadDocument = memo(function ModalUploadDocument({
         fileName: name,
         content: "",
         createdAt: new Date().toLocaleDateString("en-GB"),
-        updatedAt: new Date().toLocaleDateString("en-GB"),
+        updatedAt: null,
         type: null,
         size: null,
         isDelete: false,
@@ -40,7 +40,7 @@ const ModalUploadDocument = memo(function ModalUploadDocument({
         },
       };
       await CreateFile(newFile, loginUser);
-      setIsOpen(false);
+      setIsHidden(false);
       setName("");
       navigate(`/documents/files/${newFile.id}`);
     } catch {
@@ -54,11 +54,13 @@ const ModalUploadDocument = memo(function ModalUploadDocument({
       handleCreateDoc();
     }
   };
-
   return (
     <div
-      hidden={isOpen}
-      className="w-[50%] h-[180px] fixed top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white-2 z-[999] rounded-6"
+      className={` w-[90%] lg:w-[50%] h-[180px] fixed top-[40%] left-[50%] translate-x-[-50%] bg-white-2 z-[999] rounded-6 transition-all duration-300 ${
+        isHidden
+          ? "translate-y-[-150%] opacity-0 invisible"
+          : "translate-y-[-50%] opacity-1 visible "
+      }`}
     >
       <div className="flex items-center justify-center flex-col">
         <label htmlFor="name" className="my-12 text-[1.1rem]">
@@ -73,19 +75,19 @@ const ModalUploadDocument = memo(function ModalUploadDocument({
             setName(e.target.value);
           }}
           onKeyDown={handleKeyDown}
-          className="border-[1px] border-[#888] w-[40%] outline-none rounded-6 p-2"
+          className="border-[1px] border-[#888] w-[70%] md:w-[60%] lg:w-[40%] outline-none rounded-6 p-2"
         />
         {error && (
           <span className="text-red italic text-[0.8rem] pt-[4px]">
             Name != ""
           </span>
         )}
-        <div className="flex items-center justify-center mt-24">
+        <div className="w-[100%] flex items-center justify-center mt-24">
           <Button
             justify="center"
             className="bg-white  mr-8"
             onClick={() => {
-              setIsOpen(true);
+              setIsHidden(true);
               setName("");
             }}
           >

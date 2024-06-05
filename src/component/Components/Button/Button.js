@@ -5,7 +5,7 @@ const Button = ({ children, justify, className, onClick, type }) => {
   return (
     <button
       {...props}
-      className={`flex items-center min-w-[100px] hover:opacity-70 min-h-[36px] text-[1rem] p-[4px] px-[8px] transition-all duration-300 rounded-[6px] justify-${justify} ${className}`}
+      className={`flex items-center  hover:opacity-70  text-[1rem] py-[6px] px-[8px] transition-all duration-300 rounded-[6px] justify-${justify} ${className}`}
     >
       {children}
     </button>

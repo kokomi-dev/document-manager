@@ -12,8 +12,10 @@ const ModalConfirmDelete = ({ id, loginUser, isHidden, setIsHidden }) => {
   return (
     <Fragment>
       <div
-        className={`w-[400px] h-[300px] p-4 flex items-center justify-start flex-col z-[200] bg-white-2 text-black rounded-6 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ${
-          isHidden ? "hidden" : ""
+        className={`w-[400px] h-[300px] p-4 flex items-center justify-start flex-col z-[200] bg-white-2 text-black rounded-6 fixed top-[50%] left-[50%] translate-x-[-50%] transition-all duration-300 ${
+          isHidden
+            ? " translate-y-[-150%] opacity-0 invisible"
+            : " translate-y-[-50%] opacity-100 visible"
         }`}
       >
         <h1 className="text-[1.2rem] font-semibold mt-[30px] ">

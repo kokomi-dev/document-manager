@@ -50,7 +50,6 @@ const Aside = ({ isHidden, setIsHidden }) => {
               />
             )}
             <h3 className="pt-[2px]  text-white3">{loginUser.userName}</h3>
-            {/* {loginUser.email ? <h4>{loginUser.email}</h4> : <></>} */}
           </Flex>
           {/* navigation */}
           <Nav />

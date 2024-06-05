@@ -1268,8 +1268,13 @@ body {
 }
 /* bakcgrimages */
 .button__blue {
-  background-image: linear-gradient(to right, #135f9e, rgb(78, 143, 207));
+  background-image: linear-gradient(to right, #176fb7, rgb(78, 143, 207));
 }
 .button__green {
-  background-image: linear-gradient(to bottom, #008000, rgb(64, 204, 106));
+  background-image: linear-gradient(to left, #0cc10c, rgb(64, 204, 106));
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 12px 0px;
 }
