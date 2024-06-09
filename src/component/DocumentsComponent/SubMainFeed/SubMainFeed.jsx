@@ -1,17 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
-import ModalUploadDocument from "../../FileComponent/ModalUploadDocument/ModalUploadDocument";
-import OverLay from "../../Components/OverLay/OverLay";
+import React, { Fragment, useEffect } from "react";
 import Flex from "../../Components/Flex/Flex";
 import Button from "../../Components/Button/Button";
 import { FiGrid } from "react-icons/fi";
 import { FiTable } from "react-icons/fi";
-import { IoIosAdd } from "react-icons/io";
 import Search from "../../Components/Search/Search";
 import "./submain.scss";
 import { useSelector } from "react-redux";
 const SubMainFeed = ({ setLayouts, setCreationTime }) => {
   const loginUser = useSelector((state) => state.login);
-  const [isHiddenUpDoc, setIsHiddenUpDoc] = useState(true);
   useEffect(() => {
     const chosseLayout = document.querySelectorAll(".choose__layout");
     const layout = localStorage.getItem("layout");
@@ -33,16 +29,6 @@ const SubMainFeed = ({ setLayouts, setCreationTime }) => {
     <Fragment>
       {/* search */}
       <Search loginUser={loginUser} />
-      {/* add new doc */}
-      <div
-        className="w-[100%] z-[10] h-[220px] my-8 flex items-center justify-center border-dashed hover:border-solid border-[1px] text-blue border-[black] rounded-6 p-4 cursor-pointer transition-all duration-300"
-        onClick={() => {
-          setIsHiddenUpDoc(false);
-        }}
-      >
-        <IoIosAdd className="text-[4rem] text-blue " />
-        <h4>New document!</h4>
-      </div>
       <Flex justify="between" className="mt-[28px]">
         {/* chosse layout */}
         <Flex justify="center" className=" rounded-6 p-1">
@@ -84,16 +70,6 @@ const SubMainFeed = ({ setLayouts, setCreationTime }) => {
           </select>
         </Flex>
       </Flex>
-      <ModalUploadDocument
-        isHidden={isHiddenUpDoc}
-        setIsHidden={setIsHiddenUpDoc}
-      />
-      <OverLay
-        isHidden={isHiddenUpDoc}
-        onClick={() => {
-          setIsHiddenUpDoc(true);
-        }}
-      />
     </Fragment>
   );
 };

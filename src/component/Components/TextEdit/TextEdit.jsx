@@ -23,7 +23,7 @@ const TextEdit = ({
     handleOptionsChange(updatedOptions);
   }, [bold, size, italic, underline]);
   return (
-    <div className="w-[100%] h-[100%] border-[0.5px] border-[#888] ">
+    <div className="w-[100%] h-[100%] border-[0.5px] border-[#888] transtion-all duration-300 ">
       {/* toolbar */}
       <div className="flex items-center justify-start p-4 border-b-[1px] border-[#888]">
         <div

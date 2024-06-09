@@ -1,11 +1,11 @@
 import firebase from "../Firebase/Firebase";
 import "firebase/database";
-
 export const CreateFile = async (data, loginUser) => {
   const {
     id,
     fileName,
     content,
+    describe,
     type,
     size,
     createdAt,
@@ -21,6 +21,7 @@ export const CreateFile = async (data, loginUser) => {
       id: id,
       fileName: fileName,
       content: content,
+      describe: describe,
       type: type,
       size: size,
       createdAt: createdAt,
@@ -40,7 +41,6 @@ export const CreateFile = async (data, loginUser) => {
     throw error;
   }
 };
-
 export const UpdateFile = async (
   data,
   editableContent,

@@ -48,16 +48,16 @@ const Search = ({ loginUser }) => {
       } my-24 text-start  flex-1 px-12 flex-col flex items-start justify-start bg-white py-8 rounded-6 shadow-inner transition-all duration-300`}
     >
       {/* user name logined */}
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full flex flex-col lg:flex-row xl:flex-row items-center justify-center">
         <h6 className="text-black-2 flex items-center justify-start mt-6">
-          <div>
+          <div className="flex lg:block">
             <FaHandPeace className="text-blue text-[1.1rem] mr-[4px]" />
             <span className="italic block md:inline-block">Hi!</span>
           </div>
           <span className="ml-8 text-black ">{loginUser.userName}</span>
         </h6>
         {/* search */}
-        <form className="h-[38px] min-w-[30%] form__search ml-24 flex items-center shadow-lg justify-start bg-white-2 text-black p-[2px] rounded-6">
+        <form className="h-[38px] w-[100%] lg:min-w-[30%] form__search mt-[12px] lg:ml-24 flex items-center shadow-lg justify-start bg-white-2 text-black p-[2px] rounded-6">
           <IoSearch className="ml-[2px] text-[1.1rem]" />
           <input
             value={searchValue}

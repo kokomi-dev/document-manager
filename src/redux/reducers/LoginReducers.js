@@ -6,6 +6,7 @@ const init = {
   refreshToken: null,
   uuId: null,
   photoURL: "",
+  metaData: {},
 };
 const loginReduceres = (state = init, action) => {
   switch (action.type) {

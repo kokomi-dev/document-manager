@@ -25,7 +25,10 @@ function FileItem({ layouts, data, detail }) {
         </h3>
       </div>
       {/* show preview content */}
-      <Flex justify="center" className="w-full h-[70%] ">
+      <Flex
+        justify="center"
+        className="w-full h-[65%] md:h-[60%] lg:h-[60%] xl:h-[70%] "
+      >
         <div className=" text-ellipsis  overflow-hidden text-white3 h-[50%] ">
           {content ? (
             <p

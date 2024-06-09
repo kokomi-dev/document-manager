@@ -19,7 +19,7 @@ const Documents = () => {
         {/* content web */}
         <div className="flex-1 w-full h-full">
           {/* header content */}
-          <h1 className="text-[1.6rem] font-semibold border-b-[0.5px] border-[#888]">
+          <h1 className="text-[1.25rem] md:text-[1.4rem] lg:text-[1.6rem] font-semibold border-b-[0.5px] border-[#888]">
             Overview
           </h1>
           {/* sub main feed */}

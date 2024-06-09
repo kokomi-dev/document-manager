@@ -22,6 +22,7 @@ export const signInWithEmailAndPassword = async (email, password) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        console.log(userCredential.user);
         console.log("Login with email and password success");
       })
       .catch((error) => {

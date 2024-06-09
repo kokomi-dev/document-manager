@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../../Components/Button/Button";
 import iconGoogle from "../../../assets/images/iconGoogle.png";
 import { signInWithEmailAndPassword, signInWithGoogle } from "../Auth/Auth";
-
+import Input from "../../Components/Input/Input";
+import Loading from "../../Components/Loading/Loading";
 const LoginForm = ({ setModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  useEffect(() => {
-    setModal(true);
-  }, []);
+  const [loading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const handleSignIn = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
-    setEmail("");
-    setPassword("");
+    if (email === "" || password === "") {
+      return setError(true);
+    } else {
+      setIsLoading(true);
+      signInWithEmailAndPassword(email, password).then(() => {
+        setIsLoading(false);
+      });
+      setEmail("");
+      setPassword("");
+    }
   };
   const handleSignInGoogle = async () => {
     try {
@@ -22,6 +30,9 @@ const LoginForm = ({ setModal }) => {
       console.log("Login with google error");
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="relative transition-all lg:min-w-[450px] lg:min-h-[450px] bg-white text-black p-[24px] rounded-[6px]">
       {/* head */}
@@ -50,23 +61,26 @@ const LoginForm = ({ setModal }) => {
         </div>
         {/* sign with email and password  */}
         <form>
-          <input
+          <Input
+            type="email"
             value={email}
+            name="email"
+            label="Email"
             onChange={(e) => {
               setEmail(e.target.value);
+              setError(false);
             }}
-            placeholder="example@gmail.com"
-            className="w-[100%] h-[38px] border-[1px] border-[#888] px-4 rounded-[6px] outline-none"
-          ></input>
-          <input
+          />
+          <Input
+            name="password"
             value={password}
             type="password"
             onChange={(e) => {
               setPassword(e.target.value);
+              setError(false);
             }}
-            placeholder="password"
-            className="w-[100%] h-[38px] mt-12 border-[1px] border-[#888] px-4 rounded-[6px] outline-none"
-          ></input>
+            label="Password"
+          />
           <Button
             justify="center"
             className="w-[100%] border-[1px] border-[#888] mt-[24px] button__green text-white "
@@ -74,6 +88,9 @@ const LoginForm = ({ setModal }) => {
           >
             <h4>Login</h4>
           </Button>
+          <span className="text-[0.9rem] font-extralightitalic text-red">
+            {error ? "Fill in all fields" : ""}
+          </span>
         </form>
 
         {/* sign up account */}

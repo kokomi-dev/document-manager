@@ -18,12 +18,14 @@ import {
   FavoritesFile,
 } from "../../../api/File/CRUD";
 const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
-  const { fileName, content, createdAt, updatedAt, options } = data;
+  const { fileName, describe, content, createdAt, updatedAt, options } = data;
   const { fontSize, isItalic, isBold, isUnderline } = options;
   const { isEdit, setIsEdit } = edit;
   const [isFavorite, setIsFavorite] = useState(false);
   const [editableContent, setEditableContent] = useState(content);
   const [editableName, setEditableName] = useState(fileName);
+  const [editableDes, setEditableDes] = useState(describe);
+
   const [changeOptions, setChangeOptions] = useState({});
   const handleUpdate = async () => {
     try {
@@ -98,7 +100,7 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
                 Download
               </Button>
               <Button
-                className="text-white bg-aside ml-8"
+                className="text-white bg-[#FFA400] ml-8"
                 justify="center"
                 onClick={() => {
                   window.print();
@@ -112,15 +114,29 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
         </Flex>
       </Flex>
       {/* file name */}
+      <h4>Name Document:</h4>
       <textarea
         readOnly={isEdit ? false : true}
         value={editableName}
         autoFocus
         className={`w-[100%] border-[0.5px] border-[#888] rounded-6 capitalize p-4 font-bold text-[1.2rem] ${
-          isEdit ? "outline" : "outline-none"
+          isEdit ? "outline" : "outline-none cursor-default"
         }`}
         onChange={(e) => {
           setEditableName(e.target.value);
+        }}
+      ></textarea>
+      {/* des */}
+      <h4 className="mt-12">Describe Document:</h4>
+      <textarea
+        readOnly={isEdit ? false : true}
+        value={editableDes}
+        autoFocus
+        className={`w-[100%] border-[0.5px] border-[#888] rounded-6 capitalize p-4 font-[400] text-[1rem] text-black-2 ${
+          isEdit ? "outline" : "outline-none cursor-default"
+        }`}
+        onChange={(e) => {
+          setEditableDes(e.target.value);
         }}
       ></textarea>
       {/* favorites and time */}
@@ -148,6 +164,7 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
         </div>
       </Flex>
       {/* content */}
+      <h4>Conent Document:</h4>
       {isEdit ? (
         <TextEdit
           optionsFile={options}
@@ -166,7 +183,7 @@ const MainDetail = ({ data, edit, loginUser, param, onAction }) => {
             fontStyle: isItalic ? "italic" : "normal",
             textDecoration: isUnderline ? "underline" : "none",
           }}
-          className={`w-[100%] h-[100vh] mt-12 border-[0.5px] border-[#888] p-4 leading-7 tracking-wide rounded-6 text-justify outline-none
+          className={`w-[100%] h-[100vh] mt-12 border-[0.5px] border-[#888] p-4 leading-7 tracking-wide rounded-6 text-justify outline-none cursor-default
           `}
           value={editableContent}
         />

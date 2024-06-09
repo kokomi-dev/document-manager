@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 import Aside from "./Aside/Aside";
 import Loading from "../component/Components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +7,6 @@ import firebase from "../api/Firebase/Firebase";
 import ModalConfirmLogout from "../component/AuthComponent/ModalConfirmLogout/ModalConfirmLogout";
 import { HiMiniQueueList } from "react-icons/hi2";
 import { IoMdArrowRoundBack } from "react-icons/io";
-
 const DefaultLayout = ({ children }) => {
   const navigate = useNavigate();
   const loginUser = useSelector((state) => state.login);
@@ -31,7 +29,7 @@ const DefaultLayout = ({ children }) => {
           loginUser.photoURL = data.photoURL;
           loginUser.accessToken = data.accessToken;
           loginUser.uuId = data.uid;
-          console.log("Login success");
+          loginUser.metaData = data.metadata;
           navigate("/dashboard");
           return;
         } else {
@@ -55,30 +53,31 @@ const DefaultLayout = ({ children }) => {
   }, []);
   useEffect(() => {
     setIsSidebar(false);
+    setModalLogout(true);
   }, [navigate]);
   return (
     <div className="w-full">
       {loginUser.isLoading ? <Loading /> : null}
       <main className="main w-full h-full ">
         {loginUser.isLogin ? (
-          <div className="w-[100%] h-[100%] grid-cols-1 grid-rows-1 grid md:grid-cols-[20%,80%]">
-            <aside className="w-full h-[auto] md:w-auto md:min-h-[100vh]  bg-aside  top-0 ">
+          <div className="w-[100%] h-[100%] grid-cols-1 grid-rows-1 grid md:grid-cols-[17%,83%]">
+            <aside className="w-full h-[auto] md:w-[100%] md:min-h-[100vh]  bg-aside  top-0 ">
               <div
-                className="sm:flex items-center relative justify-start py-[4px] text-start md:hidden cursor-pointer transition-all duration-300"
+                className="flex items-center relative justify-start py-[16px] text-start md:hidden cursor-pointer transition-all duration-300"
                 onClick={() => {
                   setIsSidebar(!isSidebar);
                 }}
               >
-                <HiMiniQueueList className="w-10 h-10 ml-24  text-white" />
-                <span className="text-white text-[1.3rem] ml-12 pl-[12px]">
+                <HiMiniQueueList className="w-[30px] h-[30px] lg:w-10 lg:h-10 ml-24  text-white" />
+                <span className="text-white text-[1.2rem] lg:text-[1.3rem] pl-[8px]">
                   Menu
                 </span>
                 {isSidebar && (
-                  <IoMdArrowRoundBack className="text-black-2 text-[1.8rem] absolute top-[20%] rounded-6 cursor-pointer right-[10%] bg-white-2 w-[40px] h-[40px]" />
+                  <IoMdArrowRoundBack className="text-black-2 text-[1.4rem] lg:text-[1.8rem] absolute top-[20%] rounded-6 cursor-pointer right-[10%] bg-white-2 w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]" />
                 )}
               </div>
               <div
-                className={`w-full md:w-[20%] h-full fixed  top-[9%] left-[-100%] md:left-0 md:top-0 md:flex transition-all  bg-aside duration-300 ${
+                className={`w-full md:w-[17%] h-full fixed  top-[7%] left-[-100%] md:left-0 md:top-0 md:flex transition-all  bg-aside duration-300 ${
                   isSidebar && "left-0 z-[300] opacity-100 "
                 }`}
               >
@@ -86,7 +85,7 @@ const DefaultLayout = ({ children }) => {
               </div>
             </aside>
             {/* dashboard, favorites, trash pages */}
-            <div className="w-full min-h-[100vh]  h-full md:flex md:flex-col scroll-smooth flex-1 px-6 py-0 bg-main overflow-auto">
+            <div className="w-full min-h-[100vh]  h-full md:flex md:flex-col scroll-smooth flex-1 px-12 py-4 bg-main overflow-auto">
               {children}
             </div>
             <ModalConfirmLogout

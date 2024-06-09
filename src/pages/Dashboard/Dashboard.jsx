@@ -11,7 +11,9 @@ const Dashboard = () => {
         <div className="w-full h-full">
           {/* header content */}
           <Flex justify="between" className="border-b-[0.5px] border-[#888]">
-            <h1 className="text-[1.6rem] font-semibold">Dashboard</h1>
+            <h1 className="text-[1.25rem] md:text-[1.4rem] lg:text-[1.6rem] font-semibold">
+              Dashboard
+            </h1>
           </Flex>
           <MainDashboard />
         </div>

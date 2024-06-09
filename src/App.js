@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Documents from "./pages/Documents/Documents.jsx";
 import GetStart from "./pages/GetStart/GetStart";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import CreateDoc from "./pages/CreateDoc/CreateDoc.jsx";
 import Trash from "./pages/Trash/Trash.jsx";
 import DetailFile from "./pages/Documents/DetailFIle/DetailFile.jsx";
 import TrashDetail from "./pages/Trash/TrashDetail/TrashDetail.jsx";
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<GetStart />} />
             <Route path="/documents" element={<Documents />} />
+            <Route path="/documents/create" element={<CreateDoc />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/documents/trash" element={<Trash />} />
             <Route path="/documents/files/:id" element={<DetailFile />} />

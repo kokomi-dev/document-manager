@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
+import { useNavigate } from "react-router-dom";
 import { createAccountEmailPassword } from "../Auth/Auth";
-const Form = ({ label, input, type, value, handleChange }, props) => {
-  return (
-    <div className="w-[100%] mb-4">
-      <label htmlFor={label} className="text-black-2 text-[0.9rem]">
-        {label}
-      </label>
-      <br />
-      <input
-        id={label}
-        type={type}
-        placeholder={input}
-        className="w-[100%] px-[6px] py-[3px] border-[0.5px] rounded-6 border-[#888] outline-none"
-        value={value}
-        onChange={handleChange}
-      />
-    </div>
-  );
-};
+import Input from "../../Components/Input/Input";
+
 const RegisterForm = ({ setModal }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,14 +11,19 @@ const RegisterForm = ({ setModal }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setError(false);
     setErrorPass(false);
   }, [name, email, password, confirmPassword]);
   const handleSubmitCreateUser = (e) => {
     e.preventDefault();
-    if (!name && !email && !password && !confirmPassword) {
+    if (
+      name === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
       setError(true);
       return;
     }
@@ -42,7 +32,7 @@ const RegisterForm = ({ setModal }) => {
       return;
     }
     createAccountEmailPassword(email, password);
-    console.log("email", email);
+    navigate("/");
   };
   return (
     <div className="relative transition-all lg:min-w-[455px] lg:min-h-[450px] bg-white text-black  rounded-[6px] p-[24px]">
@@ -51,41 +41,45 @@ const RegisterForm = ({ setModal }) => {
       <span className="text-[0.9rem] text-white3 ml-8">to continue!</span>
       {/*    form register account*/}
       <form
-        className="f w-[100%] h-[100%] my-24 "
+        className="w-[100%] h-[100%]   my-24  "
         onSubmit={handleSubmitCreateUser}
       >
-        <Form
+        <Input
+          name="name"
           label="Full Name"
           value={name}
-          handleChange={(e) => {
+          onChange={(e) => {
             setName(e.target.value);
           }}
         />
-        <Form
+        <Input
+          name="email"
           label="Email"
           value={email}
           type="email"
-          handleChange={(e) => {
+          onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
-        <Form
+        <Input
+          name="password"
           label="Password"
           type="password"
           value={password}
-          handleChange={(e) => {
+          onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <Form
+        <Input
+          name="confirm__password"
           label="Confirm Password"
           type="password"
           value={confirmPassword}
-          handleChange={(e) => {
+          onChange={(e) => {
             setConfirmPassword(e.target.value);
           }}
         />
-        {/*    */}
+
         <Button
           className="button__blue text-white mt-24 min-w-full"
           justify="center"
@@ -93,12 +87,12 @@ const RegisterForm = ({ setModal }) => {
           Sign Up
         </Button>
         {error && (
-          <span className="text-red text-[0.85rem] underline italic font-extralight text-center block mt-4">
+          <span className="text-red text-[0.85rem]  italic font-extralight text-center block mt-4">
             Fill full the information
           </span>
         )}
         {errorPass && (
-          <span className="text-red text-[0.85rem] underline italic font-extralight text-center block mt-4">
+          <span className="text-red text-[0.85rem]  italic font-extralight text-center block mt-4">
             Passwords do not match
           </span>
         )}
