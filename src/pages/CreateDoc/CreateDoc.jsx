@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CreateFile } from "../../api/File/CRUD";
@@ -6,7 +6,8 @@ import { v4 } from "uuid";
 import Button from "../../component/Components/Button/Button";
 import Flex from "../../component/Components/Flex/Flex";
 import Input from "../../component/Components/Input/Input";
-import { FaFileUpload } from "react-icons/fa";
+import UploadFile from "../../component/UploadFile/UploadFile";
+import SweetAlert2 from "react-sweetalert2";
 
 const CreateDoc = () => {
   const navigate = useNavigate();
@@ -20,10 +21,17 @@ const CreateDoc = () => {
   const [underline, setUnderline] = useState(false);
   const [size, setIsSize] = useState(16);
   const [error, setError] = useState(false);
-
+  const [mess, setMess] = useState({});
+  useEffect(() => {
+    setMess({ show: false });
+  }, []);
   const handleCreateDoc = async () => {
     if ((!name && name === "") || content === "") {
       setError(true);
+      setMess({
+        show: true,
+        title: "Fill in all field information",
+      });
       return;
     }
     try {
@@ -46,20 +54,24 @@ const CreateDoc = () => {
         },
       };
       await CreateFile(newFile, loginUser);
+      setMess({
+        show: true,
+        title: "Create document success",
+      });
       navigate(`/documents`);
     } catch {
       console.log("error create");
     }
   };
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      handleCreateDoc();
-    }
-  };
+  // const handleKeyDown = (e) => {
+  //   if (e.keyCode === 13) {
+  //     e.preventDefault();
+  //     handleCreateDoc();
+  //   }
+  // };
   return (
-    <div className="w-full min-w-[100%] pt-6 ">
-      <div className="flex-1 w-full h-full">
+    <div className="w-full min-w-[100%] h-[100%] pt-6 z-[1] ">
+      <div className="flex-1 w-full h-full ">
         <h1 className="text-[1.25rem] md:text-[1.4rem] lg:text-[1.6rem] font-semibold border-b-[0.5px] border-[#888]">
           Create Document
         </h1>
@@ -73,24 +85,30 @@ const CreateDoc = () => {
           </Flex>
         </Flex>
         {/* create document */}
-        <div className="w-full h-full mt-12 border-t-[0.5px] border-[#888] py-12">
+        <div className="w-[100%] h-[[100%]] mt-12 border-t-[0.5px] border-[#888] py-12">
           {/* note */}
-          <p className="bg-[#3CB371] p-4 rounded-6 text-[#333]">
+          <p className="bg-white-2 p-4 rounded-6 text-[#333]">
             *Note:Please completely fill in the information boxes below to
             ensure your documents are uploaded most accurately. Your documents
             are completely secure and private so only you can see the documents
             you have uploaded.
           </p>
+          {/* upload file */}
+          <div className="w-[100%] h-[100%] my-24 ">
+            <h4 className="text-center font-bold text-[1.4rem]">Upload File</h4>
+            <UploadFile />
+          </div>
+          {/* create file */}
           <div className="w-full h-full  flex-col  mt-12 py-12">
-            <h4 className="w-full text-center text-[1.4rem] font-semibold mb-12">
-              New Document!
-            </h4>
-            <Flex justify="end" className="w-full h-auto mb-12 ">
-              <Button className="bg-[#FFA400] float-end text-black ">
-                Upload File <FaFileUpload />
-              </Button>
-            </Flex>
-            <div className="mb-12">
+            <p className="bg-white-2 p-4 rounded-6 text-[#333]">
+              *Note: Once you create the data above, you will not be able to
+              download it. Sorry for the inconvenience, but we are trying to
+              improve as soon as possible.
+            </p>
+            <div className="my-12">
+              <h4 className="text-center font-bold text-[1.4rem]">
+                Create File Document
+              </h4>
               <label htmlFor="document__type">Type Document:</label>
               <select
                 id="document__type"
@@ -104,7 +122,6 @@ const CreateDoc = () => {
                 <option value="txt">TXT</option>
               </select>
             </div>
-
             <div>
               <Input
                 label="Name "
@@ -118,12 +135,11 @@ const CreateDoc = () => {
               <Input
                 label="Describe "
                 type="text"
-                id="document__name"
+                id="document__describe"
                 onChange={(e) => {
                   setDescribe(e.target.value);
                   setError(false);
                 }}
-                onKeyDown={handleKeyDown}
               />
               <h5 className="mb-12 text-black-2 text-[0.9rem]">
                 Creation time: {new Date().toLocaleDateString("en-GB")}
@@ -222,6 +238,7 @@ const CreateDoc = () => {
           </div>
         </div>
       </div>
+      <SweetAlert2 {...mess} />
     </div>
   );
 };

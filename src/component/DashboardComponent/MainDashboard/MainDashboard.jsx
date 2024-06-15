@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getData } from "../../../api/Data/GetData";
 import { useSelector } from "react-redux";
 import Flex from "../../Components/Flex/Flex";
+import { storage } from "../../../api/Firebase/Firebase";
 const WrapPreviewInfo = ({ title, bg, count }) => {
   return (
     <div
@@ -18,8 +19,10 @@ const WrapPreviewInfo = ({ title, bg, count }) => {
 };
 const MainDashboard = () => {
   const loginUser = useSelector((state) => state.login);
-  const [numberUploaded, setNumberUploaded] = useState(null);
+  const [numberCreated, setNumberCreated] = useState(null);
   const [numberTrash, setNumberTrash] = useState(null);
+  const [numberUploaded, setNumberUploaded] = useState(null);
+
   useEffect(() => {
     const fetch = async () => {
       const data = await getData(loginUser);
@@ -32,7 +35,7 @@ const MainDashboard = () => {
               return;
             }
           });
-          setNumberUploaded(res.length);
+          setNumberCreated(res.length);
           const trash = data.data.filter((item) => {
             if (item.isDelete === true) {
               return item;
@@ -45,6 +48,21 @@ const MainDashboard = () => {
       } catch {}
     };
     fetch();
+    const fetchDocuments = async () => {
+      try {
+        const listRef = storage.ref(`data/${loginUser.uuId}`);
+        const res = await listRef.listAll();
+        const metadataPromises = res.items.map((itemRef) =>
+          itemRef.getMetadata()
+        );
+        const metadataArray = await Promise.all(metadataPromises);
+        setNumberUploaded(metadataArray.length);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDocuments();
   }, []);
   return (
     <div className="w-[100%] h-[100%] mt-12 ">
@@ -63,15 +81,19 @@ const MainDashboard = () => {
           <WrapPreviewInfo
             title="Documents"
             bg="bg-[#1E90FE]"
-            count={numberUploaded}
+            count={numberCreated}
           />
           <WrapPreviewInfo
             title="Documents in trash"
             bg="bg-[#FFA400]"
             count={numberTrash}
           />
-          <WrapPreviewInfo title="Uploaded" bg="bg-[#6A5ACD]" count="3" />
-          <WrapPreviewInfo title="Shared" bg="bg-[#FF6048]" count="1" />
+          <WrapPreviewInfo
+            title="Uploaded"
+            bg="bg-[#6A5ACD]"
+            count={numberUploaded}
+          />
+          <WrapPreviewInfo title="Shared" bg="bg-[#FF6048]" count="0" />
         </div>
       </div>
       <div className=" border-b-[0.8px] border-[#888] py-12 mt-8">
@@ -80,7 +102,7 @@ const MainDashboard = () => {
           <WrapPreviewInfo
             title="Uploaded this month"
             bg="bg-[#3CB371]"
-            count="8"
+            count={numberCreated + numberUploaded}
           />
         </div>
       </div>

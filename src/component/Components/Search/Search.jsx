@@ -45,7 +45,7 @@ const Search = ({ loginUser }) => {
     <div
       className={`w-full h-[140px] ${
         focus ? "h-[280px]" : ""
-      } my-24 text-start  flex-1 px-12 flex-col flex items-start justify-start bg-white py-8 rounded-6 shadow-inner transition-all duration-300`}
+      } my-24 py-24 text-start  flex-1 px-12 flex-col flex items-start justify-start bg-white  rounded-6  transition-all duration-300`}
     >
       {/* user name logined */}
       <div className="w-full flex flex-col lg:flex-row xl:flex-row items-center justify-center">
@@ -57,12 +57,12 @@ const Search = ({ loginUser }) => {
           <span className="ml-8 text-black ">{loginUser.userName}</span>
         </h6>
         {/* search */}
-        <form className="h-[38px] w-[100%] lg:min-w-[30%] form__search mt-[12px] lg:ml-24 flex items-center shadow-lg justify-start bg-white-2 text-black p-[2px] rounded-6">
+        <form className="h-[38px] w-[100%] lg:min-w-[60%] form__search my-8 lg:ml-24 flex items-center  justify-center  text-black p-[2px] rounded-6">
           <IoSearch className="ml-[2px] text-[1.1rem]" />
           <input
             value={searchValue}
             placeholder="Search"
-            className="search outline-none w-full h-full px-[4px] bg-white-2"
+            className="search outline-none w-[80%] md:w-[70%] lg:w-[50%] h-full px-[4px] bg-white-2"
             onChange={(e) => {
               setSearchValue(e.target.value);
             }}

@@ -1,5 +1,6 @@
 import firebase from "../Firebase/Firebase";
 import "firebase/database";
+
 export const CreateFile = async (data, loginUser) => {
   const {
     id,
@@ -110,3 +111,4 @@ export const FavoritesFile = async (data, isFavorite, loginUser, param) => {
     return await firebase.database().ref().update(updates);
   } catch {}
 };
+// upload file from laptop

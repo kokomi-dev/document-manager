@@ -56,19 +56,19 @@ const DefaultLayout = ({ children }) => {
     setModalLogout(true);
   }, [navigate]);
   return (
-    <div className="w-full">
+    <div className="w-[100%]">
       {loginUser.isLoading ? <Loading /> : null}
-      <main className="main w-full h-full ">
+      <main className="main w-[100%] h-full ">
         {loginUser.isLogin ? (
-          <div className="w-[100%] h-[100%] grid-cols-1 grid-rows-1 grid md:grid-cols-[17%,83%]">
-            <aside className="w-full h-[auto] md:w-[100%] md:min-h-[100vh]  bg-aside  top-0 ">
+          <div className="w-[100%] h-[100%] grid grid-cols-1 md:grid-cols-[17%,83%] z-[20]">
+            <aside className="w-full h-[auto] md:w-[100%] md:min-h-[100vh]  bg-aside top-0 ">
               <div
-                className="flex items-center relative justify-start py-[16px] text-start md:hidden cursor-pointer transition-all duration-300"
+                className="flex items-center relative justify-start py-[12px] text-start md:hidden cursor-pointer transition-all duration-300"
                 onClick={() => {
                   setIsSidebar(!isSidebar);
                 }}
               >
-                <HiMiniQueueList className="w-[30px] h-[30px] lg:w-10 lg:h-10 ml-24  text-white" />
+                <HiMiniQueueList className="w-[26px] h-[26px] lg:w-10 lg:h-10 ml-12  text-white" />
                 <span className="text-white text-[1.2rem] lg:text-[1.3rem] pl-[8px]">
                   Menu
                 </span>
@@ -77,15 +77,15 @@ const DefaultLayout = ({ children }) => {
                 )}
               </div>
               <div
-                className={`w-full md:w-[17%] h-full fixed  top-[7%] left-[-100%] md:left-0 md:top-0 md:flex transition-all  bg-aside duration-300 ${
-                  isSidebar && "left-0 z-[300] opacity-100 "
+                className={`w-full md:w-[17%] h-full fixed  top-[7%] left-[-100%] md:left-0 md:top-0 md:flex transition-all  bg-aside duration-300 z-[100] ${
+                  isSidebar && "left-0 opacity-100 z-[100] "
                 }`}
               >
                 <Aside isHidden={modalLogout} setIsHidden={setModalLogout} />
               </div>
             </aside>
             {/* dashboard, favorites, trash pages */}
-            <div className="w-full min-h-[100vh]  h-full md:flex md:flex-col scroll-smooth flex-1 px-12 py-4 bg-main overflow-auto">
+            <div className="w-full  min-h-[100vh]  h-full  scroll-smooth px-12 py-4">
               {children}
             </div>
             <ModalConfirmLogout

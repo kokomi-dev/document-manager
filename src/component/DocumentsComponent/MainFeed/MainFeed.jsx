@@ -1,11 +1,17 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import FileItem from "../../FileComponent/FIleItem/FileItem";
+import ViewFileUpload from "../ViewFileUpload/ViewFileUpload";
 import { getData } from "../../../api/Data/GetData";
+import Flex from "../../Components/Flex/Flex";
+import Button from "../../Components/Button/Button";
+import { FaCaretDown } from "react-icons/fa";
+
 function MainFeed({ setIsHidden, layouts, creationTime }) {
   const loginUser = useSelector((state) => state.login);
   const [listDocuments, setListDocuments] = useState([]);
   const [details, setDetail] = useState([]);
+  const [showMore, setShowMore] = useState(false);
   // load data when user login or open web
   useEffect(() => {
     const fetchData = async () => {
@@ -42,50 +48,69 @@ function MainFeed({ setIsHidden, layouts, creationTime }) {
   }, [loginUser.uuId, creationTime]);
 
   return (
-    <Fragment>
+    <div className="border-t-[0.8px] border-[#888] mt-12 pt-12">
       {/* select all */}
-      <div className="mt-12 flex items-center justify-start">
-        <span className="font-semibold">
-          ({listDocuments.length}) <span>documents</span>
-        </span>
+      {/* document uploaded */}
+      <div className="pt-12 my-12">
+        <h4 className="font-semibold text-[1.1rem]">Documents Uploaded</h4>
+        <ViewFileUpload />
       </div>
-      {/* render documents  */}
-      <div
-        className={`mb-[40px] mt-24 gap-y-[20px] ${
-          layouts === "grid_layout"
-            ? "grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-x-[20px] "
-            : "flex flex-col items-center justify-start "
-        }`}
-      >
-        {listDocuments ? (
-          listDocuments.map((item, index) => {
-            return (
-              <FileItem
-                layouts={layouts}
-                detail={details[index]}
-                data={item}
-                key={index}
-              />
-            );
-          })
-        ) : (
-          <div className="flex items-center justify-center">
-            <span className="text-[1.3rem] font-bold mr-[12px]">
-              Your empty!
-            </span>
-            <span
-              className="text-blue underline text-[1.1rem] cursor-pointer hover:opacity-70"
-              onClick={() => {
-                setIsHidden(false);
-              }}
-            >
-              Upload now!
-            </span>
-          </div>
-        )}
+      {/* document created */}
+      <div className="border-t-[0.8px] border-[#888] my-12 pt-12">
+        <h4 className="font-semibold text-[1.1rem]">Documents Created</h4>
+        <Flex justify="between" className="my-8">
+          <span className="">Total: {listDocuments.length}</span>
+          <Button
+            className={`text-white bg-[#3CB371] `}
+            onClick={() => {
+              setShowMore(!showMore);
+            }}
+          >
+            View all
+            <FaCaretDown
+              className={`${
+                showMore ? " rotate-180" : ""
+              } transition-all duration-300`}
+            />
+          </Button>
+        </Flex>
+        <div
+          className={`w-[100%] mb-[40px] mt-12 gap-y-[12px] ${
+            showMore
+              ? "h-[100%] grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-x-[2%] "
+              : "h-[160px] md:h-[180px] lg:h-[220px]  flex gap-x-[2%] items-center flex-nowrap justify-start  overflow-x-scroll "
+          }`}
+        >
+          {listDocuments ? (
+            listDocuments.map((item, index) => {
+              return (
+                <FileItem
+                  layouts={layouts}
+                  detail={details[index]}
+                  data={item}
+                  key={index}
+                />
+              );
+            })
+          ) : (
+            <div className="flex items-center justify-center">
+              <span className="text-[1.3rem] font-bold mr-[12px]">
+                Your empty!
+              </span>
+              <span
+                className="text-blue underline text-[1.1rem] cursor-pointer hover:opacity-70"
+                onClick={() => {
+                  setIsHidden(false);
+                }}
+              >
+                Upload now!
+              </span>
+            </div>
+          )}
+        </div>
       </div>
       {/* modal */}
-    </Fragment>
+    </div>
   );
 }
 
