@@ -44,13 +44,6 @@ const UploadFile = () => {
         console.log("upload file error");
       });
   };
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleDragLeave = (event) => {
-    event.preventDefault();
-  };
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -65,8 +58,6 @@ const UploadFile = () => {
     <Fragment>
       {/* drag and drop file */}
       <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`w-[100%] h-[120px] md:h-[160px] lg:h-[180px] border-[1px] border-[#888]  flex items-center justify-center my-12 ${
           file ? "border-solid cursor-no-drop" : "border-dashed cursor-alias"
@@ -115,7 +106,7 @@ const UploadFile = () => {
             </tr>
           </thead>
           <tbody>
-            {file && file.lastModifiedDate ? (
+            {file ? (
               <tr className="w-[100%]">
                 <td className="text-center   ">{file.name}</td>
                 <td className="text-center">{file.size}</td>

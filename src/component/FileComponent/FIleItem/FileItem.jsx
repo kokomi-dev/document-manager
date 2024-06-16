@@ -8,7 +8,7 @@ function FileItem({ layouts, data, detail }) {
   // state
   return (
     <Link
-      className={`item__file min-w-[30%] lg:min-w-[20%] w-[100%] hover:shadow-2xl h-[160px] md:h-[180px] lg:h-[220px] border-[0.2px] bg-white  border-black-2 shadow rounded-6 p-4  cursor-pointer  transition-all duration-300`}
+      className={`item__file min-w-[30%] lg:min-w-[20%] w-[100%] hover:shadow-2xl h-[160px] md:h-[180px] lg:h-[200px] border-[0.2px] bg-white  border-black-2 shadow rounded-6 p-4  cursor-pointer  transition-all duration-300`}
       data-id={id}
       to={{
         pathname: `/documents/files/${detail}`,

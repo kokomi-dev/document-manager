@@ -78,7 +78,7 @@ function MainFeed({ setIsHidden, layouts, creationTime }) {
           className={`w-[100%] mb-[40px] mt-12 gap-y-[12px] ${
             showMore
               ? "h-[100%] grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-x-[2%] "
-              : "h-[160px] md:h-[180px] lg:h-[220px]  flex gap-x-[2%] items-center flex-nowrap justify-start  overflow-x-scroll "
+              : "h-[160px] md:h-[180px] lg:h-[220px]  flex gap-x-[2%] items-center flex-nowrap justify-start  overflow-x-scroll  "
           }`}
         >
           {listDocuments ? (
